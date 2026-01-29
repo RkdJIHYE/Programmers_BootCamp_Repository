@@ -8,20 +8,21 @@ public class Main {
 
         //1단계
         System.out.println("==명언 탭==");
-        System.out.print("명령) ");
-        String cmd = sc.nextLine();
+        while (true){
+            System.out.print("명령) ");
+            String cmd = sc.nextLine();
+            if (cmd.equals("종료")){
+                break;
+            }
+            //2단계 (등록)
+            if (cmd.equals("등록")) {
+                System.out.print("명언 : ");
+                String wiseSaying = sc.nextLine();
+                System.out.print("작가 : ");
+                String Author = sc.nextLine();
+            }
 
-        System.out.println(cmd);
-
-        //2단계 (등록)
-
-        System.out.print("명언 : ");
-        String wiseSaying = sc.nextLine();
-        System.out.print("작가 : ");
-        String Author = sc.nextLine();
-
-        System.out.print("명령) ");
-        cmd = sc.nextLine();
+        }
 
 
     }
