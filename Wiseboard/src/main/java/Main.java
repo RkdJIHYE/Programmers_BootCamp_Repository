@@ -8,6 +8,7 @@ public class Main {
 
         //1단계
         System.out.println("==명언 탭==");
+        int cnt =1;
         while (true){
             System.out.print("명령) ");
             String cmd = sc.nextLine();
@@ -20,6 +21,13 @@ public class Main {
                 String wiseSaying = sc.nextLine();
                 System.out.print("작가 : ");
                 String Author = sc.nextLine();
+                System.out.println(cnt+"번이 등록되었습니다.");
+                cnt++;
+
+            }
+            else{
+                System.out.print("명령) ");
+                cmd = sc.nextLine();
             }
 
         }
