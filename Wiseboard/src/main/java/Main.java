@@ -41,7 +41,7 @@ public class Main {
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
 
-                for(int k=0;k<last_idx;k++){
+                for(int k=last_idx-1;k>=0;k--){
                    System.out.println(wiseSayings[k].cnt+" / "+wiseSayings[k].Author+" / "+wiseSayings[k].content);
                 }
             }
