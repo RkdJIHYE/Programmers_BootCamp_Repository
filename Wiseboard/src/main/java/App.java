@@ -11,7 +11,6 @@ public class App {
     //객체 인스턴스 생성
     //추가 리스트로 생성함
     private List<WiseSaying> wiseSayings = new ArrayList<>();
-    private int last_idx = -1;
 
 
     public void run(){
@@ -79,9 +78,8 @@ public class App {
         }
     }
 
-
     private int findIndexById(int id){
-        for (int i =0;i<=last_idx;i++){
+        for (int i =0;i<wiseSayings.size();i++){
             WiseSaying findWiseSaying = wiseSayings.get(i);
             if (id == findWiseSaying.getCnt()){
                 return i;
@@ -117,7 +115,7 @@ public class App {
         wiseSayings.remove(findIdx);
         return true;
     }
-
+    //목록
     private void actionShow() {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
@@ -159,7 +157,7 @@ public class App {
         //WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
         int foundedWiseSayingIndex = -1;
 
-        for (int i = last_idx; i >= 0; i--) {
+        for (int i = wiseSayings.size()-1; i >= 0; i--) {
             WiseSaying foundedWiseSaying = wiseSayings.get(i);
             wiseSayingList.add(foundedWiseSaying);
         }
