@@ -42,10 +42,19 @@ public class App {
     }
 
     private void delete(){
-        int delTarget = 0; //지금 1번째 명언을 지우고 싶기 때문에
+        int delTarget = 1; //지금 1번째 명언을 지우고 싶기 때문에
+        int findIdx = -1;
+        for (int i =0;i<=last_idx;i++){
+            WiseSaying findWiseSaying = wiseSayings[i];
+            if (delTarget == findWiseSaying.cnt){
+                findIdx = i;
+                //지우고자하는 인덱스의 위치를 발견하게 되었다.
+            }
+        }
+        if (findIdx==-1) return;
 
-        for (int i = delTarget;i<last_idx;i++){
-            wiseSayings[i]=wiseSayings[i+1];
+        for (int j =findIdx;j<last_idx;j++){
+            wiseSayings[j]=wiseSayings[j+1];
         }
 
         last_idx--;
