@@ -47,17 +47,18 @@ public class App {
         String content = sc.nextLine();
         System.out.print("작가 : ");
         String author = sc.nextLine();
-        WiseSaying wiseSaying = new WiseSaying();
+        write(content,author);
+        System.out.println(last_cnt+"번이 등록되었습니다.");
 
+    }
+
+    private void write(String content, String author){
+
+        WiseSaying wiseSaying = new WiseSaying();
         wiseSaying.cnt = last_cnt;
         wiseSaying.content = content;
         wiseSaying.Author = author;
 
         wiseSayings[++last_idx]=wiseSaying;
-
-
-        System.out.println(last_cnt+"번이 등록되었습니다.");
-
-
     }
 }
