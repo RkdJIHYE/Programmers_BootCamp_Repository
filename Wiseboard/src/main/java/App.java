@@ -66,15 +66,26 @@ public class App {
     }
     private WiseSaying findByID(int id){
         int ModifyTarget = id;
+
+        int findIdx =findIndexById(id);
+        if (findIdx==-1){
+            return null;
+        }
+        else{
+            return wiseSayings[findIdx];
+        }
+    }
+
+
+    private int findIndexById(int id){
         for (int i =0;i<=last_idx;i++){
             WiseSaying findWiseSaying = wiseSayings[i];
-            if (ModifyTarget == findWiseSaying.cnt){
-                return wiseSayings[i];
+            if (id == findWiseSaying.cnt){
+                return i;
                 //수정하고자하는 인덱스의 위치를 발견하게 되었다.
             }
         }
-        return null;
-
+        return -1;
     }
 
     private void actionDelete(String cmd) {
@@ -98,14 +109,8 @@ public class App {
 
     private boolean delete(int id){
         int delTarget = id;
-        int findIdx = -1;
-        for (int i =0;i<=last_idx;i++){
-            WiseSaying findWiseSaying = wiseSayings[i];
-            if (delTarget == findWiseSaying.cnt){
-                findIdx = i;
-                //지우고자하는 인덱스의 위치를 발견하게 되었다.
-            }
-        }
+        int findIdx = findIndexById(id);
+
         if (findIdx==-1) return false;
 
         for (int j =findIdx;j<last_idx;j++){
@@ -154,8 +159,7 @@ public class App {
     private  WiseSaying[] findList(){
         //리스트 버전
         //List<WiseSaying> wiseSayingList = new ArrayList<>();
-
-
+        
         //배열 버전
         WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
         int foundedWiseSayingIndex = -1;
