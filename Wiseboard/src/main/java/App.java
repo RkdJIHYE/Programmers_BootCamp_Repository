@@ -42,12 +42,18 @@ public class App {
         String idStr = cmd.split("=")[1];
         int id = Integer.parseInt(idStr);
 
-        delete(id);
-        System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
+        Boolean answer =delete(id);
+
+        if (answer == true){
+            System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
+        }
+        else{
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+        }
 
     }
 
-    private void delete(int id){
+    private boolean delete(int id){
         int delTarget = id;
         int findIdx = -1;
         for (int i =0;i<=last_idx;i++){
@@ -57,13 +63,14 @@ public class App {
                 //지우고자하는 인덱스의 위치를 발견하게 되었다.
             }
         }
-        if (findIdx==-1) return;
+        if (findIdx==-1) return false;
 
         for (int j =findIdx;j<last_idx;j++){
             wiseSayings[j]=wiseSayings[j+1];
         }
 
         last_idx--;
+        return true;
     }
 
     private void actionShow() {
