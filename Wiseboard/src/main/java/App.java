@@ -29,7 +29,26 @@ public class App {
             else if (cmd.equals("목록")) {
                actionShow();
             }
+            else if (cmd.equals("삭제?id=1")){
+                actionDelete();
+            }
         }
+    }
+
+    private void actionDelete() {
+        delete();
+        System.out.println("1번 명언이 삭제되었습니다.");
+
+    }
+
+    private void delete(){
+        int delTarget = 0; //지금 1번째 명언을 지우고 싶기 때문에
+
+        for (int i = delTarget;i<last_idx;i++){
+            wiseSayings[i]=wiseSayings[i+1];
+        }
+
+        last_idx--;
     }
 
     private void actionShow() {
