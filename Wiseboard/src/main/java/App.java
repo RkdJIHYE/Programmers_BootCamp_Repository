@@ -121,7 +121,7 @@ public class App {
 
     private boolean delete(int id){
         return wiseSayings.removeIf((wiseSaying)-> wiseSaying.getCnt() == id);
-        
+
     }
 
     //목록
