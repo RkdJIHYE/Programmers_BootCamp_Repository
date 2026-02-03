@@ -1,14 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
 
     //메서드에서 공유하기 위해서 객체의 전역변수로 바꿔준다.
 
-    Scanner sc = new Scanner(System.in);
-    int last_cnt = 0;
+    private Scanner sc = new Scanner(System.in);
+    private int last_cnt = 0;
     //객체 인스턴스 생성
-    WiseSaying[] wiseSayings = new WiseSaying[10];
-    int last_idx = -1;
+    //추가 리스트로 생성함
+    private List<WiseSaying> wiseSayings = new ArrayList<>();
+    private int last_idx = -1;
 
 
     public void run(){
@@ -72,14 +75,14 @@ public class App {
             return null;
         }
         else{
-            return wiseSayings[findIdx];
+            return wiseSayings.get(findIdx);
         }
     }
 
 
     private int findIndexById(int id){
         for (int i =0;i<=last_idx;i++){
-            WiseSaying findWiseSaying = wiseSayings[i];
+            WiseSaying findWiseSaying = wiseSayings.get(i);
             if (id == findWiseSaying.getCnt()){
                 return i;
                 //수정하고자하는 인덱스의 위치를 발견하게 되었다.
@@ -108,29 +111,23 @@ public class App {
     }
 
     private boolean delete(int id){
-        int delTarget = id;
         int findIdx = findIndexById(id);
-
         if (findIdx==-1) return false;
-
-        for (int j =findIdx;j<last_idx;j++){
-            wiseSayings[j]=wiseSayings[j+1];
-        }
-
-        last_idx--;
+        //추가된 리무브 기능
+        wiseSayings.remove(findIdx);
         return true;
     }
 
     private void actionShow() {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
-        //List<WiseSaying> wiseSayingList = findList();
+        List<WiseSaying> wiseSayingList = findList();
         //리스트 버전
 
         //배열 버전
-        WiseSaying[] foundedWiseSayings = findList();
+        //WiseSaying[] foundedWiseSayings = findList();
 
-        for (WiseSaying wiseSaying : foundedWiseSayings){
+        for (WiseSaying wiseSaying : wiseSayingList){
             System.out.printf("%d / %s / %s \n",wiseSaying.getCnt(),wiseSaying.getAuthor(), wiseSaying.getContent());
         }
     }
@@ -151,23 +148,23 @@ public class App {
 
         WiseSaying wiseSaying = new WiseSaying(last_cnt,content,author);
 
-        wiseSayings[++last_idx]=wiseSaying;
+        wiseSayings.add(wiseSaying);
     }
 
-    private  WiseSaying[] findList(){
+    private  List<WiseSaying> findList(){
         //리스트 버전
-        //List<WiseSaying> wiseSayingList = new ArrayList<>();
+        List<WiseSaying> wiseSayingList = new ArrayList<>();
 
         //배열 버전
-        WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
+        //WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
         int foundedWiseSayingIndex = -1;
 
         for (int i = last_idx; i >= 0; i--) {
-            WiseSaying foundedWiseSaying = wiseSayings[i];
-            foundedWiseSayings[++foundedWiseSayingIndex] = foundedWiseSaying;
+            WiseSaying foundedWiseSaying = wiseSayings.get(i);
+            wiseSayingList.add(foundedWiseSaying);
         }
 
-        return foundedWiseSayings;
+        return wiseSayingList;
     }
 
 }
