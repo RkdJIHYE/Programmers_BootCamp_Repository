@@ -50,10 +50,10 @@ public class App {
         }
 
         //사용자 상호작용만 따로 뺀다.
-        System.out.print("명언(기존) : %s\n".formatted(wiseSaying.content));
+        System.out.print("명언(기존) : %s\n".formatted(wiseSaying.getContent()));
         System.out.print("명언 : ");
         String new_content = sc.nextLine();
-        System.out.print("작가(기존) : %s\n".formatted(wiseSaying.Author));
+        System.out.print("작가(기존) : %s\n".formatted(wiseSaying.getAuthor()));
         System.out.print("작가 : ");
         String new_author = sc.nextLine();
 
@@ -61,8 +61,8 @@ public class App {
     }
 
     private void modify(WiseSaying wiseSaying,String new_content,String new_author){
-       wiseSaying.content = new_content;
-       wiseSaying.Author = new_author;
+       wiseSaying.setContent(new_content);
+       wiseSaying.setAuthor(new_author);
     }
     private WiseSaying findByID(int id){
         int ModifyTarget = id;
@@ -80,7 +80,7 @@ public class App {
     private int findIndexById(int id){
         for (int i =0;i<=last_idx;i++){
             WiseSaying findWiseSaying = wiseSayings[i];
-            if (id == findWiseSaying.cnt){
+            if (id == findWiseSaying.getCnt()){
                 return i;
                 //수정하고자하는 인덱스의 위치를 발견하게 되었다.
             }
@@ -131,7 +131,7 @@ public class App {
         WiseSaying[] foundedWiseSayings = findList();
 
         for (WiseSaying wiseSaying : foundedWiseSayings){
-            System.out.printf("%d / %s / %s \n",wiseSaying.cnt,wiseSaying.Author, wiseSaying.content);
+            System.out.printf("%d / %s / %s \n",wiseSaying.getCnt(),wiseSaying.getAuthor(), wiseSaying.getContent());
         }
     }
 
@@ -147,11 +147,9 @@ public class App {
     }
 
     private void write(String content, String author){
+        //생성자 이용해서 같이 넣기
 
-        WiseSaying wiseSaying = new WiseSaying();
-        wiseSaying.cnt = last_cnt;
-        wiseSaying.content = content;
-        wiseSaying.Author = author;
+        WiseSaying wiseSaying = new WiseSaying(last_cnt,content,author);
 
         wiseSayings[++last_idx]=wiseSaying;
     }
@@ -159,7 +157,7 @@ public class App {
     private  WiseSaying[] findList(){
         //리스트 버전
         //List<WiseSaying> wiseSayingList = new ArrayList<>();
-        
+
         //배열 버전
         WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
         int foundedWiseSayingIndex = -1;
