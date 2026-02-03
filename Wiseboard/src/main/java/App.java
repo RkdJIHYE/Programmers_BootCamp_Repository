@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -37,9 +35,14 @@ public class App {
     private void actionShow() {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
-        List<WiseSaying> wiseSayingList = findList();
+        //List<WiseSaying> wiseSayingList = findList();
+        //리스트 버전
 
-        for (WiseSaying wiseSaying : wiseSayingList){
+
+        //배열 버전
+        WiseSaying[] foundedWiseSayings = findList();
+
+        for (WiseSaying wiseSaying : foundedWiseSayings){
             System.out.printf("%d / %s / %s \n",wiseSaying.cnt,wiseSaying.Author, wiseSaying.content);
         }
     }
@@ -65,15 +68,21 @@ public class App {
         wiseSayings[++last_idx]=wiseSaying;
     }
 
-    private List<WiseSaying> findList(){
-        List<WiseSaying> wiseSayingList = new ArrayList<>();
+    private  WiseSaying[] findList(){
+        //리스트 버전
+        //List<WiseSaying> wiseSayingList = new ArrayList<>();
 
-        for (int k = last_idx; k >= 0; k--) {
-            WiseSaying foundWiseSaying = wiseSayings[k];
-            wiseSayingList.add(foundWiseSaying);
 
+        //배열 버전
+        WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
+        int foundedWiseSayingIndex = -1;
+
+        for (int i = last_idx; i >= 0; i--) {
+            WiseSaying foundedWiseSaying = wiseSayings[i];
+            foundedWiseSayings[++foundedWiseSayingIndex] = foundedWiseSaying;
         }
 
-        return wiseSayingList;
+        return foundedWiseSayings;
     }
+
 }
