@@ -32,7 +32,49 @@ public class App {
             else if (cmd.startsWith("삭제")){
                 actionDelete(cmd);
             }
+            else if (cmd.startsWith("수정")){
+                actionModify(cmd);
+            }
         }
+    }
+
+    private void actionModify(String cmd){
+
+        String idStr = cmd.split("=")[1];
+        int id = Integer.parseInt(idStr);
+
+        WiseSaying wiseSaying=findByID(id);
+        if (wiseSaying==null){
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
+        }
+
+        //사용자 상호작용만 따로 뺀다.
+        System.out.print("명언(기존) : %s\n".formatted(wiseSaying.content));
+        System.out.print("명언 : ");
+        String new_content = sc.nextLine();
+        System.out.print("작가(기존) : %s\n".formatted(wiseSaying.Author));
+        System.out.print("작가 : ");
+        String new_author = sc.nextLine();
+
+        modify(wiseSaying,new_content,new_author);
+    }
+
+    private void modify(WiseSaying wiseSaying,String new_content,String new_author){
+       wiseSaying.content = new_content;
+       wiseSaying.Author = new_author;
+    }
+    private WiseSaying findByID(int id){
+        int ModifyTarget = id;
+        for (int i =0;i<=last_idx;i++){
+            WiseSaying findWiseSaying = wiseSayings[i];
+            if (ModifyTarget == findWiseSaying.cnt){
+                return wiseSayings[i];
+                //수정하고자하는 인덱스의 위치를 발견하게 되었다.
+            }
+        }
+        return null;
+
     }
 
     private void actionDelete(String cmd) {
@@ -49,6 +91,7 @@ public class App {
         }
         else{
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
         }
 
     }
@@ -78,7 +121,6 @@ public class App {
         System.out.println("----------------------");
         //List<WiseSaying> wiseSayingList = findList();
         //리스트 버전
-
 
         //배열 버전
         WiseSaying[] foundedWiseSayings = findList();
