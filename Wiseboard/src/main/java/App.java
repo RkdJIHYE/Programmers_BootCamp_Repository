@@ -82,13 +82,13 @@ public class App {
     private int findIndexById(int id){
 
         //반복문 버전
-        for (int i =0;i<wiseSayings.size();i++){
-            WiseSaying findWiseSaying = wiseSayings.get(i);
-            if (id == findWiseSaying.getCnt()){
-                return i;
-                //수정하고자하는 인덱스의 위치를 발견하게 되었다.
-            }
-        }
+//        for (int i =0;i<wiseSayings.size();i++){
+//            WiseSaying findWiseSaying = wiseSayings.get(i);
+//            if (id == findWiseSaying.getCnt()){
+//                return i;
+//                //수정하고자하는 인덱스의 위치를 발견하게 되었다.
+//            }
+//        }
 
         //Stream으로 작성한 버전
         IntStream
@@ -120,12 +120,10 @@ public class App {
     }
 
     private boolean delete(int id){
-        int findIdx = findIndexById(id);
-        if (findIdx==-1) return false;
-        //추가된 리무브 기능
-        wiseSayings.remove(findIdx);
-        return true;
+        return wiseSayings.removeIf((wiseSaying)-> wiseSaying.getCnt() == id);
+        
     }
+
     //목록
     private void actionShow() {
         System.out.println("번호 / 작가 / 명언");
