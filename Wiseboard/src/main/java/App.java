@@ -30,12 +30,16 @@ public class App {
                actionShow();
             }
             else if (cmd.equals("삭제?id=1")){
-                actionDelete();
+                actionDelete(cmd);
             }
         }
     }
 
-    private void actionDelete() {
+    private void actionDelete(String cmd) {
+
+        String num = cmd.substring(6,cmd.length());
+
+        System.out.println(num);
         delete();
         System.out.println("1번 명언이 삭제되었습니다.");
 
