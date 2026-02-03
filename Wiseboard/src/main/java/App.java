@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class App {
 
@@ -79,6 +80,8 @@ public class App {
     }
 
     private int findIndexById(int id){
+
+        //반복문 버전
         for (int i =0;i<wiseSayings.size();i++){
             WiseSaying findWiseSaying = wiseSayings.get(i);
             if (id == findWiseSaying.getCnt()){
@@ -86,6 +89,14 @@ public class App {
                 //수정하고자하는 인덱스의 위치를 발견하게 되었다.
             }
         }
+
+        //Stream으로 작성한 버전
+        IntStream
+                .range(0,wiseSayings.size())
+                .filter(i->wiseSayings.get(i).getCnt()==id)
+                .findFirst()
+                .orElse(-1);
+
         return -1;
     }
 
