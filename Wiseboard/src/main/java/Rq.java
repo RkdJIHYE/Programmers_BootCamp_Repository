@@ -1,5 +1,7 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Rq {
 
@@ -18,16 +20,31 @@ public class Rq {
 
         //삼항연산자 이용
         String params = cmdBits.length>1 ?cmdBits[1]:"";
+//
+//        String[] paramBits = params.split("&");
+//
+//        for (int i =0;i<paramBits.length;i++){
+//            String[] paramArg = paramBits[i].split("=");
+//            String key = paramArg[0];
+//            String value = paramArg.length >1?paramArg[1]:"";
+//
+//            paramMap.put(key,value);
+//        }
+
+        //Stream 으로 작성하기
 
         String[] paramBits = params.split("&");
-
-        for (int i =0;i<paramBits.length;i++){
-            String[] paramArg = paramBits[i].split("=");
-            String key = paramArg[0];
-            String value = paramArg.length >1?paramArg[1]:"";
-
-            paramMap.put(key,value);
-        }
+        paramMap=Arrays.stream(paramBits) // 예시 ["id=1","name=aaa",age="20"]
+                .map((String param)->{
+                    return param.split("=");
+                        }) //["id","1"]
+                .filter((bits)->{
+                    return bits.length==2 && bits[0]!=null && bits[1]!=null;
+                })
+                .collect(Collectors.toMap(
+                        bits->bits[0],
+                        bits->bits[1]
+                ));
 
     }
 
@@ -37,8 +54,12 @@ public class Rq {
     }
 
     //고객이 수정하고자하는 대상
-    public String getParam(String key){
-        return paramMap.get(key);
+    public String getParam(String key,String defaultValue){
+        if (paramMap.containsKey(key)){
+            return paramMap.get(key);
+        }
+
+        return defaultValue;
     }
 
     //문자열을 -> 숫자로 변환해서 주는 것
