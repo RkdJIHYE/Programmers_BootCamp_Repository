@@ -38,18 +38,17 @@ public class App {
                actionShow();
             }
             else if (action.startsWith("삭제")){
-                actionDelete(cmd);
+                actionDelete(rq);
             }
             else if (action.startsWith("수정")){
-                actionModify(cmd);
+                actionModify(rq);
             }
         }
     }
 
-    private void actionModify(String cmd){
+    private void actionModify(Rq rq){
 
-        String idStr = cmd.split("=")[1];
-        int id = Integer.parseInt(idStr);
+        int id = rq.getParamInt("id");
 
         WiseSaying wiseSaying=findByID(id);
         if (wiseSaying==null){
@@ -72,6 +71,7 @@ public class App {
        wiseSaying.setContent(new_content);
        wiseSaying.setAuthor(new_author);
     }
+
     private WiseSaying findByID(int id){
         int ModifyTarget = id;
 
@@ -94,23 +94,19 @@ public class App {
 //                //수정하고자하는 인덱스의 위치를 발견하게 되었다.
 //            }
 //        }
-
         //Stream으로 작성한 버전
-        IntStream
+        return IntStream
                 .range(0,wiseSayings.size())
                 .filter(i->wiseSayings.get(i).getCnt()==id)
                 .findFirst()
                 .orElse(-1);
 
-        return -1;
     }
 
-    private void actionDelete(String cmd) {
+    private void actionDelete(Rq rq) {
 
         //String num = cmd.substring(6,cmd.length());
-
-        String idStr = cmd.split("=")[1];
-        int id = Integer.parseInt(idStr);
+        int id = rq.getParamInt("id");
 
         Boolean answer =delete(id);
 
