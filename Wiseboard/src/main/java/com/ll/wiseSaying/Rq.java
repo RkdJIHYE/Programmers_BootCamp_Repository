@@ -21,7 +21,7 @@ public class Rq {
         //System.out.print(cmdBits);
 
         //삼항연산자 이용
-        String params = cmdBits.length>1 ?cmdBits[1]:"";
+        String params = cmdBits.length>1?cmdBits[1]:"";
 //
 //        String[] paramBits = params.split("&");
 //

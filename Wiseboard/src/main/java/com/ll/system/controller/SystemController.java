@@ -6,5 +6,4 @@ public class SystemController {
         System.out.println("프로그램을 종료합니다.");
     }
 
-
 }
