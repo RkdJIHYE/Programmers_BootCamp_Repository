@@ -1,4 +1,4 @@
-# Programmers_BootCamp_Repository
+# Programmers_BootCamp_Repository_TIL Archive
 
  [Day1] : https://leeward-appeal-325.notion.site/2026-1-28-Day01-JAVA-2f65aa1db8b78089b46edc800352eb30?pvs=74
 
@@ -17,4 +17,3 @@
 
  [Day6] : https://leeward-appeal-325.notion.site/26-2-4-Day06-2-2fd5aa1db8b7807e85e1e998fedb59ea
 
- 
