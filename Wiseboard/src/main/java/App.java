@@ -48,8 +48,12 @@ public class App {
 
     private void actionModify(Rq rq){
 
-        int id = rq.getParamInt("id");
+        int id = rq.getParamInt("id",-1);
 
+        if (id ==-1){
+            System.out.println("아이디를 제대로 입력해주세요");
+            return;
+        }
         WiseSaying wiseSaying=findByID(id);
         if (wiseSaying==null){
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
@@ -106,8 +110,11 @@ public class App {
     private void actionDelete(Rq rq) {
 
         //String num = cmd.substring(6,cmd.length());
-        int id = rq.getParamInt("id");
-
+        int id = rq.getParamInt("id",-1);
+        if (id==-1){
+            System.out.println("아이디를 제대로 입력해주세요");
+            return;
+        }
         Boolean answer =delete(id);
 
         if (answer == true){

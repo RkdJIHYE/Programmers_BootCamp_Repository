@@ -42,8 +42,14 @@ public class Rq {
     }
 
     //문자열을 -> 숫자로 변환해서 주는 것
-    public int getParamInt(String key){
-        return Integer.parseInt(paramMap.get(key));
+    public int getParamInt(String key,int defaultValues){
+        try{
+            return Integer.parseInt(paramMap.get(key));
+        }
+        catch(NumberFormatException e){
+            return defaultValues;
+        }
+
     }
 
 
