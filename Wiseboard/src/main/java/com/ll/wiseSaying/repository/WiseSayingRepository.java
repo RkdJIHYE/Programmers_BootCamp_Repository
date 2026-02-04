@@ -57,9 +57,13 @@ public class WiseSayingRepository {
 
     public WiseSaying save(WiseSaying wiseSaying){
         //객체 상태 통째로 넘기기
-        wiseSayings.add(wiseSaying);
+        //새로 저장하라 id==0이면 새로운 wiseSaying 등록
+        if (wiseSaying.getCnt()==0){
+            wiseSayings.add(wiseSaying);
 
+        }
         return wiseSaying;
+        //수정 : 현재 상태에서는 수정 코드 필요 없기 때문에 일단은 이렇게 작성 
     }
 
 }
