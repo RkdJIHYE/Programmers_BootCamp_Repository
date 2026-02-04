@@ -1,52 +1,21 @@
+package com.ll.wiseSaying.controller;
+
+import com.ll.wiseSaying.Rq;
+import com.ll.wiseSaying.entity.WiseSaying;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class App {
-
-    //메서드에서 공유하기 위해서 객체의 전역변수로 바꿔준다.
-
+public class WiseSayingController {
     private Scanner sc = new Scanner(System.in);
+
     private int last_cnt = 0;
-    //객체 인스턴스 생성
-    //추가 리스트로 생성함
     private List<WiseSaying> wiseSayings = new ArrayList<>();
 
 
-    public void run(){
-        //스캐너를 이용하여, 키보드에 입력을 받는다.
-        //1단계
-        System.out.println("== 명언 탭 ==");
-
-        while (true){
-            System.out.print("명령) ");
-            String cmd = sc.nextLine();
-
-            Rq rq = new Rq(cmd); //cmd 분석 객체
-
-            String action = rq.getAction();
-
-            if (action.equals("종료")){
-                break;
-            }
-            //2단계 (등록)
-            else if (action.equals("등록")) {
-                actionWrite();
-            }
-            else if (action.equals("목록")) {
-               actionShow();
-            }
-            else if (action.startsWith("삭제")){
-                actionDelete(rq);
-            }
-            else if (action.startsWith("수정")){
-                actionModify(rq);
-            }
-        }
-    }
-
-    private void actionModify(Rq rq){
+    public void actionModify(Rq rq){
 
         int id = rq.getParamInt("id",-1);
 
@@ -71,9 +40,9 @@ public class App {
         modify(wiseSaying,new_content,new_author);
     }
 
-    private void modify(WiseSaying wiseSaying,String new_content,String new_author){
-       wiseSaying.setContent(new_content);
-       wiseSaying.setAuthor(new_author);
+    private void modify(WiseSaying wiseSaying, String new_content, String new_author){
+        wiseSaying.setContent(new_content);
+        wiseSaying.setAuthor(new_author);
     }
 
     private WiseSaying findByID(int id){
@@ -90,15 +59,6 @@ public class App {
 
     private int findIndexById(int id){
 
-        //반복문 버전
-//        for (int i =0;i<wiseSayings.size();i++){
-//            WiseSaying findWiseSaying = wiseSayings.get(i);
-//            if (id == findWiseSaying.getCnt()){
-//                return i;
-//                //수정하고자하는 인덱스의 위치를 발견하게 되었다.
-//            }
-//        }
-        //Stream으로 작성한 버전
         return IntStream
                 .range(0,wiseSayings.size())
                 .filter(i->wiseSayings.get(i).getCnt()==id)
@@ -107,7 +67,7 @@ public class App {
 
     }
 
-    private void actionDelete(Rq rq) {
+    public void actionDelete(Rq rq) {
 
         //String num = cmd.substring(6,cmd.length());
         int id = rq.getParamInt("id",-1);
@@ -133,21 +93,21 @@ public class App {
     }
 
     //목록
-    private void actionShow() {
+    public void actionShow() {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
         List<WiseSaying> wiseSayingList = findList();
         //리스트 버전
 
         //배열 버전
-        //WiseSaying[] foundedWiseSayings = findList();
+        //com.ll.wiseSaying.entity.WiseSaying[] foundedWiseSayings = findList();
 
         for (WiseSaying wiseSaying : wiseSayingList){
             System.out.printf("%d / %s / %s \n",wiseSaying.getCnt(),wiseSaying.getAuthor(), wiseSaying.getContent());
         }
     }
 
-    private void actionWrite() {
+    public void actionWrite() {
         ++last_cnt;
         System.out.print("명언 : ");
         String content = sc.nextLine();
@@ -171,7 +131,7 @@ public class App {
         List<WiseSaying> wiseSayingList = new ArrayList<>();
 
         //배열 버전
-        //WiseSaying[] foundedWiseSayings = new WiseSaying[last_idx + 1];
+        //com.ll.wiseSaying.entity.WiseSaying[] foundedWiseSayings = new com.ll.wiseSaying.entity.WiseSaying[last_idx + 1];
         int foundedWiseSayingIndex = -1;
 
         for (int i = wiseSayings.size()-1; i >= 0; i--) {
@@ -183,3 +143,11 @@ public class App {
     }
 
 }
+
+
+
+
+
+
+
+

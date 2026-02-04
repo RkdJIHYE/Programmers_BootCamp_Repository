@@ -1,3 +1,5 @@
+package com.ll.wiseSaying.entity;
+
 public class WiseSaying {
     private int cnt ;
     private String author;
