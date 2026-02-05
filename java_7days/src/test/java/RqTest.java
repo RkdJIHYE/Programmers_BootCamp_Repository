@@ -105,10 +105,18 @@ public class RqTest {
     @DisplayName("명령 : 목록?keyword=, rg.getParam(\"keywordType\",\"\")->\"\"")
     void t11() {
         Rq rq = new Rq("목록?keyword=");
-        String rs = rq.getParam("keywordType","");
+        String rs = rq.getParam("keyword","");
         assertThat(rs).isEqualTo("");
     }
 
+
+    @Test
+    @DisplayName("명령 : 목록?keyword, rg.getParam(\"keywordType\",\"\")->\"\"")
+    void t12() {
+        Rq rq = new Rq("목록?keyword");
+        String rs = rq.getParam("keyword","");
+        assertThat(rs).isEqualTo("");
+    }
 
 
 
