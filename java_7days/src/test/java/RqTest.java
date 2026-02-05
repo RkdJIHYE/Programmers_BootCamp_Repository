@@ -35,5 +35,13 @@ public class RqTest {
         assertThat(actionName).isEqualTo("수정");
     }
 
+    @Test
+    @DisplayName("value = '명령:수정?id=1 일때 rq.getParam(\"id\")->1")
+    void t3() {
+        Rq rq = new Rq("수정?id=1");
+        int rst = rq.getParam("id");
+        assertThat(rst).isEqualTo(1);
+    }
+
 
 }
