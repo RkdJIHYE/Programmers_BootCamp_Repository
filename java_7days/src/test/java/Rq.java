@@ -21,6 +21,13 @@ public class Rq {
         String params = cmd.split("\\?")[1];
 
         for (String param : params.split("&")){
+
+            String[] paramBits = param.split("=");
+            if (paramBits.length ==1 ){
+                //왼쪽만 들어옴, 오른쪽 파라미터 값은 안들어옴
+                continue;
+            }
+
             String paramKey = param.split("=")[0];
             String paramValue = param.split("=")[1];
 
