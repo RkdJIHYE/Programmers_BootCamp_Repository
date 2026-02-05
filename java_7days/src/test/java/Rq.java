@@ -31,5 +31,9 @@ public class Rq {
         return "";
     }
 
+    public int getParamAsInt(String cmd){
+        return 1;
+    }
+
 
 }
