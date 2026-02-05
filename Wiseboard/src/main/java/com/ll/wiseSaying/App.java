@@ -1,5 +1,7 @@
 package com.ll.wiseSaying;
 
+import com.ll.global.AppContext;
+import com.ll.global.Rq;
 import com.ll.system.controller.SystemController;
 import com.ll.wiseSaying.controller.WiseSayingController;
 import com.ll.wiseSaying.entity.WiseSaying;
@@ -17,8 +19,8 @@ public class App {
     //객체 인스턴스 생성
     //추가 리스트로 생성함
     private List<WiseSaying> wiseSayings = new ArrayList<>();
-    private SystemController systemController = new SystemController();
-    private WiseSayingController wiseSayingController = new WiseSayingController();
+    private SystemController systemController = AppContext.systemController;
+    private WiseSayingController wiseSayingController = AppContext.wiseSayingController;
 
 
     public void run() {
