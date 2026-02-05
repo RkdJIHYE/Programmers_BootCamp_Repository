@@ -68,6 +68,14 @@ public class RqTest {
     }
 
 
+    @Test
+    @DisplayName("value = 목록?page=10 일때, rg.getParam(\"page\")->10")
+    void t7() {
+        Rq rq = new Rq("목록?page=10");
+        int rst = rq.getParamAsInt("page");
+        assertThat(rst).isEqualTo(10);
+    }
+
 
 
 }
