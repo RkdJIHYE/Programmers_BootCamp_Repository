@@ -19,11 +19,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 // -> 이를 통해 key를 넣으면 value를 도출하도록 했다.
 public class RqTest {
     @Test
-    @DisplayName("rq.getActionName()")
+    @DisplayName("rq.getActionName()-삭제")
     void t1() {
         Rq rq = new Rq("삭제?id=1");
         String actionName = rq.aetActionName();
         assertThat(actionName).isEqualTo("삭제");
     }
+
+
+    @Test
+    @DisplayName("rq.getActionName()-수정")
+    void t2() {
+        Rq rq = new Rq("수정?id=1");
+        String actionName = rq.aetActionName();
+        assertThat(actionName).isEqualTo("수정");
+    }
+
 
 }
