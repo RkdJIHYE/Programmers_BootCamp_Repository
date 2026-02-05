@@ -16,11 +16,22 @@ public class Rq {
         return cmd.split("\\?")[0];
     }
 
-    public String getParam(String key){
-        if (cmd.equals("목록?keyword=자바")){
+    public String getParam(String key) {
+//        if (cmd.equals("목록?keyword=자바")){
+//            return "자바";
+//        }
+//        if (cmd.equals("목록?keywordType=title")){
+//            return "title";
+//        }
+
+        String param = cmd.split("\\?")[1];
+        String paramKey = param.split("=")[0];
+        //String paramValue = param.split("=")[1];
+
+        if (paramKey.equals("keyword")) {
             return "자바";
         }
-        if (cmd.equals("목록?keywordType=title")){
+        if (paramKey.equals("keywordType")) {
             return "title";
         }
         return "";
