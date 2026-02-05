@@ -17,3 +17,6 @@
 
  [Day6] : https://leeward-appeal-325.notion.site/26-2-4-Day06-2-2fd5aa1db8b7807e85e1e998fedb59ea
 
+
+ [Day7] : https://leeward-appeal-325.notion.site/26-2-5-Day07-3-TDD-2fe5aa1db8b780279855ef8b26971086
+
