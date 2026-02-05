@@ -77,5 +77,23 @@ public class RqTest {
     }
 
 
+    @Test
+    @DisplayName("value = 목록?keword=자바&keywordType=title&&page=1일때, rg.getParam(\"keywordType\")->\"title\"")
+    void t8() {
+        Rq rq = new Rq("목록?keyword=자바&keywordType=title&&page=1");
+        String rst = rq.getParam("keywordType");
+        assertThat(rst).isEqualTo("title");
+    }
+
+    @Test
+    @DisplayName("명령 : 삭제?id=aaa일때, rg.getParam(\"id\",-1)->-1")
+    void t9() {
+        Rq rq = new Rq("삭제?id=aaa");
+        int rs = rq.getParamAsInt("id",-1);
+        assertThat(rs).isEqualTo(-1);
+    }
+
+
+
 
 }
