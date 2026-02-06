@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Scanner;
+import java.io.IOException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -30,12 +31,16 @@ public class TestUtilTest {
 
     @Test
     @DisplayName("TestUtil.setOutByteArray()")
-    void t2 (){
+    void t2() throws IOException{
         ByteArrayOutputStream byteArrayOutputStream = TestUtil.setOutByteArray();
 
-        System.out.print("안녕하세요");
+        System.out.println("안녕하세요");
 
         String rst = byteArrayOutputStream.toString();
+
+        TestUtil.ClearSetOut(byteArrayOutputStream);
+
+        System.out.println("출력결과 : "+rst);
 
         //검증하고 싶은 rst 에 안녕하세요가 포함되어 있는지를 확인
         //isEqualTo 대신에 보통 contains 를 사용한다.

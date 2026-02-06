@@ -1,4 +1,5 @@
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -20,16 +21,26 @@ public class TestUtil {
 //
 //    }
 
+    private static PrintStream originalStream = System.out;
+    private static PrintStream currentStream = System.out;
+
     public static ByteArrayOutputStream setOutByteArray(){
+
+
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
-
         //배열로 쌓이도록 함
         System.setOut(printStream);
-
+        currentStream = printStream;
         return byteArrayOutputStream;
     }
 
+    public static void ClearSetOut(ByteArrayOutputStream outputStream) throws IOException {
+
+        System.setOut(originalStream);
+        outputStream.close();
+        currentStream.close();
+    }
     public static Scanner getScanner(String input){
         return new Scanner(input);
     }
