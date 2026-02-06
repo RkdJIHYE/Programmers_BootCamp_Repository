@@ -15,13 +15,11 @@ public class Main {
 
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
 
-
         System.setOut(printStream);
 
         System.out.println("hihi");
         System.out.println("byebye");
         System.out.println("ok");
-
 
         System.setOut(Original_out);
 
