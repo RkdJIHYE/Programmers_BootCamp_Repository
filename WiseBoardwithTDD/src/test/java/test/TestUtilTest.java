@@ -1,3 +1,5 @@
+package test;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +13,7 @@ public class TestUtilTest {
 
 
     @Test
-    @DisplayName("TestUtil.genScanner()")
+    @DisplayName("test.TestUtil.genScanner()")
     void t1 (){
         Scanner sc = TestUtil.getScanner("""
                 등록
@@ -30,7 +32,7 @@ public class TestUtilTest {
     }
 
     @Test
-    @DisplayName("TestUtil.setOutByteArray()")
+    @DisplayName("test.TestUtil.setOutByteArray()")
     void t2() throws IOException{
         ByteArrayOutputStream byteArrayOutputStream = TestUtil.setOutByteArray();
 
@@ -54,7 +56,7 @@ public class TestUtilTest {
 //    @Test
 //    @DisplayName("등록")
 //    void t3() {
-//        final String out = TestUtil.run("""
+//        final String out = test.TestUtil.run("""
 //                등록
 //                현재를 사랑하라.
 //                작자미상
