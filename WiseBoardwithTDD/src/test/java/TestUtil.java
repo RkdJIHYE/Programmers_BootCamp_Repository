@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class TestUtil {
@@ -18,6 +20,15 @@ public class TestUtil {
 //
 //    }
 
+    public static ByteArrayOutputStream setOutByteArray(){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(byteArrayOutputStream);
+
+        //배열로 쌓이도록 함
+        System.setOut(printStream);
+
+        return byteArrayOutputStream;
+    }
 
     public static Scanner getScanner(String input){
         return new Scanner(input);

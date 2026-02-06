@@ -12,7 +12,6 @@ public class Main {
         PrintStream Original_out = System.out;
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
 
         System.setOut(printStream);

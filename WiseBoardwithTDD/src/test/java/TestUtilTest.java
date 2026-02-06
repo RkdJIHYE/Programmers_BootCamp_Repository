@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Scanner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -10,7 +11,6 @@ public class TestUtilTest {
 
     @Test
     @DisplayName("TestUtil.genScanner()")
-
     void t1 (){
         Scanner sc = TestUtil.getScanner("""
                 등록
@@ -27,6 +27,19 @@ public class TestUtilTest {
         assertThat(content).isEqualTo("현재를 사랑하라.");
         assertThat(author).isEqualTo("작자미상");
     }
+
+    @Test
+    @DisplayName("TestUtil.setOutByteArray()")
+    void t2 (){
+        ByteArrayOutputStream byteArrayOutputStream = TestUtil.setOutByteArray();
+
+        System.out.print("안녕하세요");
+
+        String rst = byteArrayOutputStream.toString();
+
+        assertThat(rst).isEqualTo("안녕하세요");
+
+       }
 
 
 
