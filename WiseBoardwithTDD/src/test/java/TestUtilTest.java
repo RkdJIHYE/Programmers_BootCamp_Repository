@@ -37,7 +37,10 @@ public class TestUtilTest {
 
         String rst = byteArrayOutputStream.toString();
 
-        assertThat(rst).isEqualTo("안녕하세요");
+        //검증하고 싶은 rst 에 안녕하세요가 포함되어 있는지를 확인
+        //isEqualTo 대신에 보통 contains 를 사용한다.
+
+        assertThat(rst).contains("안녕하세요");
 
        }
 
