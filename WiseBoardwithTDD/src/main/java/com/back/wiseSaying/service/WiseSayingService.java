@@ -11,6 +11,9 @@ public class WiseSayingService {
     public WiseSayingService() {
         this.wiseSayingRepository = new WiseSayingRepository();
     }
+    public boolean delete(int id) {
+        return wiseSayingRepository.delete(id);
+    }
 
     public WiseSaying write(String content, String author) {
         WiseSaying wiseSaying = new WiseSaying(0, content, author);
@@ -18,6 +21,7 @@ public class WiseSayingService {
 
         return wiseSaying;
     }
+
 
     public List<WiseSaying> findListDesc() {
         return wiseSayingRepository.findListDesc();

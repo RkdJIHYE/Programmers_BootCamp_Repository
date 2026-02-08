@@ -1,10 +1,14 @@
 package com.back.wiseSaying.controller;
 
+import com.back.global.Rq;
 import com.back.wiseSaying.entity.WiseSaying;
+import com.back.wiseSaying.service.WiseSayingService;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class WiseSayingController {
     private Scanner sc;
@@ -15,6 +19,17 @@ public class WiseSayingController {
     public WiseSayingController(Scanner sc) {
         this.sc = sc;
     }
+
+
+    public void actionDelete(Rq rq) {
+
+        int id = rq.getParamAsInt("id", -1);
+        boolean rst = WiseSayingService.delete(id);
+
+        System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
+
+    }
+
 
     public void actionAdd() {
         System.out.print("명언 : ");

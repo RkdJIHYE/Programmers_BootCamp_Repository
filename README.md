@@ -20,3 +20,5 @@
 
  [Day7] : https://leeward-appeal-325.notion.site/26-2-5-Day07-3-TDD-2fe5aa1db8b780279855ef8b26971086
 
+
+ [Day8] : https://leeward-appeal-325.notion.site/2ff5aa1db8b780968af9e6956f588722?pvs=74

@@ -1,5 +1,11 @@
 package com.back.wiseSaying.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+
 public class WiseSaying {
     private int id;
     private String saying;
