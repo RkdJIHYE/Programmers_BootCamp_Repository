@@ -1,15 +1,14 @@
-package com.back.standard;
+package com.back.standard.util;
 
-import com.back.standard.util.Util;
+import com.back.standard.util.util.Util;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class UtilFileTest {
-
 
     @BeforeAll
     static void beforeAll() {
@@ -20,7 +19,6 @@ public class UtilFileTest {
     static void afterAll() {
         Util.file.rmdir("temp");
     }
-
 
     @Test
     @DisplayName("파일 생성")
@@ -37,6 +35,7 @@ public class UtilFileTest {
 
         assertThat(rst).isTrue();
 
+        Util.file.delete(filePath);
     }
 
     @Test
@@ -86,12 +85,6 @@ public class UtilFileTest {
         boolean rst = Util.file.exists(filePath);
         assertThat(rst).isTrue();
 
-        // 테스트가 끝나면 파일 삭제
         Util.file.delete(filePath);
     }
-
-
-
-
-
 }

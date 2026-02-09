@@ -13,13 +13,15 @@ public class App {
     private WiseSayingController wiseSayingController;
     private SystemController systemController;
 
-    public App(Scanner sc) {
+    public App() {
         this.sc = AppContext.sc;
-        this.wiseSayingController = AppContext.wiseSayingController;
-        this.systemController = AppContext.systemController;
+        wiseSayingController = AppContext.wiseSayingController;
+        systemController = AppContext.systemController;
     }
 
     public void run() {
+
+
         System.out.println("== 명언 앱 ==");
 
         while (true) {
@@ -28,13 +30,13 @@ public class App {
             String cmd = sc.nextLine();
 
             Rq rq = new Rq(cmd);
-
             String action = rq.getActionName();
 
             switch (action) {
                 case "등록" -> wiseSayingController.actionAdd();
-                case "목록" -> wiseSayingController.actionList();
+                case "목록" -> wiseSayingController.actionList(rq);
                 case "삭제" -> wiseSayingController.actionDelete(rq);
+                case "수정" -> wiseSayingController.actionModify(rq);
                 case "종료" -> {
                     systemController.actionExit();
                     return;
