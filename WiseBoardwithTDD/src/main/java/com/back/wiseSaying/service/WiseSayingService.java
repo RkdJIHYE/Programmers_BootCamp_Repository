@@ -3,10 +3,10 @@ package com.back.wiseSaying.service;
 import com.back.global.AppContext;
 import com.back.wiseSaying.dto.PageDto;
 import com.back.wiseSaying.entity.WiseSaying;
-import com.back.wiseSaying.repository.WiseSayingRepository;
+import com.back.wiseSaying.repository.WiseSayingMemRepository;
 public class WiseSayingService {
 
-    private WiseSayingRepository wiseSayingRepository;
+    private WiseSayingMemRepository wiseSayingRepository;
 
     public WiseSayingService() {
         this.wiseSayingRepository = AppContext.wiseSayingRepository;
@@ -18,6 +18,8 @@ public class WiseSayingService {
 
         return wiseSaying;
     }
+
+
 
     public boolean delete(int id) {
         return wiseSayingRepository.delete(id);

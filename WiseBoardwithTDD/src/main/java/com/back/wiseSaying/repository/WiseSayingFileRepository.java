@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class WiseSayingFileRepository {
+public class WiseSayingFileRepository implements WiseSayingRepository{
 
     public WiseSaying save(WiseSaying wiseSaying) {
 
@@ -60,7 +60,7 @@ public class WiseSayingFileRepository {
         Util.file.delete(getDbPath());
     }
 
-    public String getDbPath() {
+    private String getDbPath() {
         return "db/wiseSaying";
     }
 
