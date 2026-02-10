@@ -1,6 +1,5 @@
 package com.back.standard.util;
 
-import com.back.standard.util.util.Util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ public class UtilJsonTest {
         map.put("age", 20);
 
         // when
-        String jsonStr = Util.json.toString(map);
+        String jsonStr = com.back.standard.util.Util.json.toString(map);
 
         System.out.println(jsonStr);
 

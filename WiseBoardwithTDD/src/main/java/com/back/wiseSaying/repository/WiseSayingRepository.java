@@ -13,6 +13,7 @@ public class WiseSayingRepository {
     private int lastId = 0;
 
     public WiseSaying save(WiseSaying wiseSaying) {
+
         if (wiseSaying.isNew()) {
             wiseSaying.setId(++lastId);
             wiseSayings.add(wiseSaying);

@@ -19,7 +19,7 @@ public class WiseSayingFileRepositoryTest {
     @Test
     @DisplayName("명언 저장")
     void t1() {
-        WiseSaying wiseSaying = new WiseSaying("꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
+        WiseSaying wiseSaying = new WiseSaying(0,"꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
 
         wiseSayingFileRepository.save(wiseSaying);
 
