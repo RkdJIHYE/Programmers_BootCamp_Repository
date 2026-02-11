@@ -1,6 +1,7 @@
 package app;
 
 import com.back.App;
+import com.back.global.AppConfig;
 import com.back.global.AppContext;
 import test.TestUtil;
 
@@ -15,7 +16,12 @@ public class AppTestRunner {
         ByteArrayOutputStream outputStream = TestUtil.setOutByteArray();
 
         AppContext.init(sc);
+        AppConfig.setTestMode();
         new App().run();
+
+
+        
+
 
         try {
             TestUtil.clearSetOutToByteArray(outputStream);
