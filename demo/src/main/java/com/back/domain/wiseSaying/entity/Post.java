@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor //기본 생성자
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +16,8 @@ public class Post {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    public Post(String title, String content) {
-        this.title = title;
-        this.content = content;
+    public Post(String title, String content){
+        this.title="";
+        this.content = "";
     }
-}
+   }
