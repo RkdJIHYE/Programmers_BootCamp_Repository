@@ -24,14 +24,21 @@ public class BaseInitData {
         if(postService.count() > 0) {
             return;
         }
-        //어떤 기능을 테스트 데이터가 2개인 것을 가정하고 개발했다.
-        postService.write("제목1","내용1");
+        try{
+            //어떤 기능을 테스트 데이터가 2개인 것을 가정하고 개발했다.
+            postService.write("제목1","내용1");
 
-        if(true){
-            throw new RuntimeException("테스트 예외");
+            if(true){
+                throw new RuntimeException("테스트 예외");
+            }
+
+            postService.write("제목2","내용2");
+
+
+        }catch(Exception e){
+            System.out.println("시스템 종료됨");
+
         }
-
-        postService.write("제목2","내용2");
     }
 
     void work2() {
