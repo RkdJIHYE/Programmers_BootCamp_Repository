@@ -2,18 +2,19 @@ package com.back.domain.post.service;
 
 import com.back.domain.post.entity.Post;
 import com.back.domain.post.repository.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service   // @Component 랑 같은 기능을 한다. 그러나
+//개발자가 볼때 해당 클래스가 서비스의 기능을 한다는 것을 보여줌
+@RequiredArgsConstructor
 public class PostService {
 
-    @Autowired
-    private PostRepository postRepository;
-    //작성하기
+    private final PostRepository postRepository;
+
     public Post write(String title, String content){
         //객체로 생성
         Post post = new Post(title,content);
