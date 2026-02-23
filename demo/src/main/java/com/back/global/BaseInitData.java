@@ -1,5 +1,6 @@
 package com.back.global;
 
+import com.back.domain.post.entity.Post;
 import com.back.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class BaseInitData {
 
             self.work1();
             self.work2();
+            self.work3();
 
 //            new Thread(() -> {
 //                self.work1();
@@ -58,5 +60,13 @@ public class BaseInitData {
     void work2() {
         postService.findById(1);
         // select * from post where id = 1;
+    }
+
+    @Transactional
+    void work3() {
+        Post post = postService.findById(1).get();
+        postService.modify(post,"제목 1-1","내용 1-1");
+
+
     }
 }
