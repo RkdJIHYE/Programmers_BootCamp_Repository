@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -12,6 +13,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 @Transactional
 @Rollback
+// 즉 두개의 yaml 파일을 사용하는 것 -> 근데 추가로 사용하라고
+// 했던 test yaml 파일에 있는 내용이 오버라이딩 되어 그 파일에 있는 것으로 사용
+// 기본적으로 application.yaml 파일을 사용하되
+@ActiveProfiles("test") // 추가로 application-test yaml 파일을 사용하겠다.
 public class PostRepositoryTest {
 
     @Autowired
