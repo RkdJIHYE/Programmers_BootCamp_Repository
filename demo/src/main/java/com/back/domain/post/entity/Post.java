@@ -1,34 +1,29 @@
 package com.back.domain.post.entity;
 
-import jakarta.persistence.*;
+import com.back.global.entity.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @NoArgsConstructor
 @Setter
 @Getter
-public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@EntityListeners(AuditingEntityListener.class)
 
+public class Post extends BaseEntity{
     @Column(length = 100, nullable = false)
     private String title;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    private LocalDateTime createDate;
-    private LocalDateTime modifyDate;
-
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
-        this.createDate = LocalDateTime.now();
-        this.modifyDate = LocalDateTime.now();
     }
 }

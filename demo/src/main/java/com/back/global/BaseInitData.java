@@ -28,6 +28,8 @@ public class BaseInitData {
 
             self.work1();
             self.work2();
+            //내가 추가한 코드 -> 수정 후 시간 변경확인
+            Thread.sleep(1000);
             self.work3();
 
 //            new Thread(() -> {
@@ -66,7 +68,6 @@ public class BaseInitData {
     void work3() {
         Post post = postService.findById(1).get();
         postService.modify(post,"제목 1-1","내용 1-1");
-
 
     }
 }
