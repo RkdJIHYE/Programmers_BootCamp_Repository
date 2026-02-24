@@ -20,4 +20,8 @@ public class MemberService {
 
         return memberRepository.save(member);
     }
+
+    public <Optional>java.util.Optional<Member> findById(int id){
+        return memberRepository.findById(id);
+    }
 }
