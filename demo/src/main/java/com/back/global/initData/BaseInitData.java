@@ -1,6 +1,6 @@
 package com.back.global.initData;
 
-import com.back.domain.post.entity.Post;
+import com.back.domain.member.service.MemberService;
 import com.back.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +28,8 @@ public class BaseInitData {
 
             self.work1();
             self.work2();
-            //내가 추가한 코드 -> 수정 후 시간 변경확인
-            Thread.sleep(1000);
-            self.work3();
-
-//            new Thread(() -> {
-//                self.work1();
-//            }).start();
-//
-//            self.work2();
         };
+
     }
     // 다음과 같이 그냥 트랜잭션이 필요한 경우에 메소드 앞에 선언
     @Transactional
@@ -47,27 +39,23 @@ public class BaseInitData {
             return;
         }
 
-
-        // 어떤 기능을 테스트 데이터가 2개인 것을 가정하고 개발
+        // 어떤 기능을 테스트 데이터가 2개인 것을 .가정하고 개발
         postService.write("제목1", "내용1");
-
-// 확인하기 위한 작업 (예외 처리 하기 위해서)
-//        if (true) {
-//            throw new RuntimeException("테스트 예외");
-//        }
-
         postService.write("제목2", "내용2");
 
     }
-    void work2() {
-        postService.findById(1);
-        // select * from post where id = 1;
-    }
 
     @Transactional
-    void work3() {
-        Post post = postService.findById(1).get();
-        postService.modify(post,"제목 1-1","내용 1-1");
+    void work2(){
+        memberService.join("systemUser","1234","시스템");
+        memberService.join("adminUser","1234","관리자");
+        memberService.join("user1","1234","유저1");
+        memberService.join("user2","1234","유저2");
+        memberService.join("user3","1234","유저3");
+
 
     }
+
+    @Autowired
+    private MemberService memberService;
 }
