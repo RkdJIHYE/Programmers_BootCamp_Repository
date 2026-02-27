@@ -109,4 +109,20 @@ public class QuestionRepositoryTest {
         assertThat(questionRepository.count()).isEqualTo(1);
 
     }
+
+    @Test
+    @DisplayName("답글 저장")
+
+    void t6() {
+        Question q1 = questionRepository.findById(1).get();
+
+        Answer a1 = new Answer();
+        a1.setContent("답글 1");
+
+        q1.getAnswerList().add(a1); // q1의 답글 목록에 a1 추가
+        questionRepository.save(q1);
+
+
+
+    }
 }
