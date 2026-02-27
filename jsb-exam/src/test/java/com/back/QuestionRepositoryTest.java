@@ -1,5 +1,6 @@
 package com.back;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -82,5 +83,19 @@ public class QuestionRepositoryTest {
         questionRepository.findBySubject("sbb가 무엇인가요?");
         assertThat(q1.getId()).isEqualTo(1);
         assertThat(q1.getContent()).isEqualTo("sbb에 대해서 알고 싶습니다.");
+    }
+
+    @Test
+    @Disabled ("질문수정")
+    void t4() {
+        Question q1 = questionRepository.findById(1).get();
+
+        q1.setSubject("sbb가 무엇인가요? - 수정");
+        questionRepository.save(q1);
+        questionRepository.flush(); // 변경 내용을 DB에 즉시 반영시키기
+
+        Question q2 = questionRepository.findById(1).get();
+        assertThat(q2.getSubject()).isEqualTo("sbb가 무엇인가요? - 수정");
+
     }
 }
