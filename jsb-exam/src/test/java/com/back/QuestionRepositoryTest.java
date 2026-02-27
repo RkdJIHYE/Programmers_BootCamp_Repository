@@ -1,6 +1,7 @@
 package com.back;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -86,7 +87,7 @@ public class QuestionRepositoryTest {
     }
 
     @Test
-    @Disabled ("질문수정")
+    @DisplayName ("질문수정")
     void t4() {
         Question q1 = questionRepository.findById(1).get();
 
@@ -96,6 +97,16 @@ public class QuestionRepositoryTest {
 
         Question q2 = questionRepository.findById(1).get();
         assertThat(q2.getSubject()).isEqualTo("sbb가 무엇인가요? - 수정");
+
+    }
+
+    @Test
+    @DisplayName("질문 삭제")
+    void t5() {
+        Question q1 = questionRepository.findById(1).get();
+        questionRepository.delete(q1);
+
+        assertThat(questionRepository.count()).isEqualTo(1);
 
     }
 }
