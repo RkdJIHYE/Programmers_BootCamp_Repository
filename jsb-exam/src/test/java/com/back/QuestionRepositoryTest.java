@@ -115,8 +115,7 @@ public class QuestionRepositoryTest {
     @DisplayName("답글 저장")
     @Transactional
     void t6() {
-        Question q1 = new Question();
-        q1.setSubject("새 질문");
+        Question q1 = questionRepository.findById(1).get();
         q1.addAnswer("답글 1");
         questionRepository.flush();
 
@@ -134,6 +133,19 @@ public class QuestionRepositoryTest {
 
         Question q1 = questionRepository.findById(1).get();
         questionRepository.delete(q1);
+    }
+
+    @Test
+    void t8(){
+        Question q1 = questionRepository.findById(1).get();
+
+        //게시물 목록
+        System.out.println(q1.getSubject());
+
+        //게시물 상세 내용과 답글 목록
+        q1.getAnswerList().
+                stream()
+                .forEach(answer -> System.out.println(answer.getContent()));
     }
 
 }
