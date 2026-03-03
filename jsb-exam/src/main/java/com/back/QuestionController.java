@@ -2,6 +2,7 @@ package com.back;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,26 +15,8 @@ public class QuestionController {
     private final QuestionRepository questionRepository;
 
     @GetMapping("/question/list")
-    @ResponseBody
-    public String list() {
-
-//        List<Question> questionList = questionRepository.findAll();
-//        return questionList;
-
-        String questions = questionRepository.findAll()
-                .stream()
-                .map(e -> "<li>%s</li>".formatted(e.getSubject()))
-                .collect(Collectors.joining("\n"));
-
-
-        return """
-                <html>
-                    <body>
-                        <ul>
-                          %s
-                        </ul>
-                    </body>
-                </html>
-                """.formatted(questions);
+    public String list(Model model) {
+        model.addAttribute("myAge", 20);
+        return "question_list";
     }
 }
