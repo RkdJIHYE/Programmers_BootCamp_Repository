@@ -17,6 +17,7 @@ public class QuestionController {
     @GetMapping("/question/list")
     public String list(Model model) {
         model.addAttribute("myAge", 20);
+        model.addAttribute("questionList", questionRepository.findById(1));
         return "question_list";
     }
 }
