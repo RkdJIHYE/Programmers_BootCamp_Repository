@@ -136,16 +136,20 @@ public class QuestionRepositoryTest {
     }
 
     @Test
+    @Transactional
     void t8(){
         Question q1 = questionRepository.findById(1).get();
 
-        //게시물 목록
-        System.out.println(q1.getSubject());
+        //질문 목록
+        // lazy -> 댓글을 최대한 나중(필요한 순간)에 가져온다.
+        // Eager -> 질문과 댓글을 한번에 가져온다.
+        System.out.println(q1.getSubject()); // 댓글 가져 오지 않는다.
 
-        //게시물 상세 내용과 답글 목록
-        q1.getAnswerList().
+        //질문 상세 내용 + 답글 목록
+        q1.getAnswerList().  // 댓글 가져온다
                 stream()
                 .forEach(answer -> System.out.println(answer.getContent()));
+
     }
 
 }
