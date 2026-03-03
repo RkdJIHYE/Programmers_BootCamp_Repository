@@ -118,9 +118,7 @@ public class QuestionRepositoryTest {
         Question q1 = new Question();
         q1.setSubject("새 질문");
         q1.addAnswer("답글 1");
-        questionRepository.save(q1);
         questionRepository.flush();
-
 
         Answer foundedAnswer = answerRepository.findById(1).get();
 
