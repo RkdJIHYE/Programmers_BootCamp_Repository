@@ -139,12 +139,16 @@ public class QuestionRepositoryTest {
     @Transactional
     void t8(){
         Question q1 = questionRepository.findById(1).get();
+        // t8에 @Transactional 안 붙여줄 경우 윗줄 실행 후 transaction종료되는 것
+        // DB도 종료된다. lazy 상황에서 한함
+        // 만약 EAGER를 사용했다면 -> 아직 살아있음.
 
         //질문 목록
         // lazy -> 댓글을 최대한 나중(필요한 순간)에 가져온다.
         // Eager -> 질문과 댓글을 한번에 가져온다.
         System.out.println(q1.getSubject()); // 댓글 가져 오지 않는다.
 
+        System.out.println(q1.getContent());
         //질문 상세 내용 + 답글 목록
         q1.getAnswerList().  // 댓글 가져온다
                 stream()
