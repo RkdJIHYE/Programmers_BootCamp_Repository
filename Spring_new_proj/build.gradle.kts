@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.runtimeOnly
+
 plugins {
     java
     id("org.springframework.boot") version "4.0.3"
@@ -33,6 +35,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
     testImplementation("org.springframework.boot:spring-boot-starter-thymeleaf-test")
