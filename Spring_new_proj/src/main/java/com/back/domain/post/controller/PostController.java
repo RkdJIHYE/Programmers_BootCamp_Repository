@@ -5,6 +5,7 @@ import com.back.domain.post.entity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +21,7 @@ public class PostController {
     public String writeForm() {
 
         return """
-                <form action="/posts/write">
+                <form method="post" action="/posts/write">
                   <input type="text" name="title">
                   <br>
                   <textarea name="content"></textarea>
@@ -32,7 +33,7 @@ public class PostController {
 
 
     //실제 데이터 처리하는 부분
-    @GetMapping("/posts/write")
+    @PostMapping("/posts/write")
     @ResponseBody
     public String write(String title, String content) {
 
