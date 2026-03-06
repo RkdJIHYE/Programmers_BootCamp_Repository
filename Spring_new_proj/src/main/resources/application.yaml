@@ -1,6 +1,7 @@
+
 spring:
   application:
-    name: Spring_new_proj
+    name: p-24-260305
 
   profiles:
     active: dev
@@ -8,6 +9,10 @@ spring:
   output:
     ansi:
       enabled: always
+
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
 
   jpa:
     properties:
@@ -23,4 +28,3 @@ logging:
   level:
     org.hibernate.orm.jdbc.bind: TRACE
     org.hibernate.orm.jdbc.extract: TRACE
-    org.springframework.transaction.interceptor: TRACE
