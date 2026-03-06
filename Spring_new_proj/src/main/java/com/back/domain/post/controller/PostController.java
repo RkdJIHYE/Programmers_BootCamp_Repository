@@ -9,12 +9,12 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -46,14 +46,17 @@ public class PostController {
 
         if(bindingResult.hasErrors()) {
 
-            String errorMessage = "";
-            List<FieldError> filedErrorList = bindingResult.getFieldErrors();
-            for(FieldError fieldError : filedErrorList) {
-                String filedName = fieldError.getField();
-                errorMessage += fieldError.getDefaultMessage() + "<br>";
-            }
+            String errorMessages = bindingResult.getFieldErrors()
+                    .stream()
+                    .map((fieldError) -> fieldError.getField() + "-" + fieldError.getDefaultMessage())
+                    .map((message) -> {
+                        String[] bits = message.split("-"); // [field, 1, errorMessage]
+                        return "<!-- %s --> <li data-error-field=\"%s\">%s</li>".formatted(bits[1], bits[0], bits[2]);
+                    })
+                    .sorted()
+                    .collect(Collectors.joining("\n"));
 
-            return getWriteForm(errorMessage, form.title, form.content, "title");
+            return getWriteForm(errorMessages, form.title, form.content, "title");
         }
 
         Post post = postService.write(form.title, form.content);
@@ -63,7 +66,7 @@ public class PostController {
 
     private String getWriteForm(String errorMessage, String title, String content, String errorFieldName) {
         return """
-                <div style="color:red">%s</div>
+                <ul style="color:red">%s</ul>
                 <form method="post" action="/posts/write">
                   <input type="text" name="title" value="%s" autoFocus>
                   <br>
