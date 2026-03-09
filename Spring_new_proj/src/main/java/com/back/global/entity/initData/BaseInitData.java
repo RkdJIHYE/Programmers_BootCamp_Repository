@@ -1,4 +1,5 @@
 package com.back.global.entity.initData;
+
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
 
-
-//baseInitData -> 처음에 추가할 data
-
 @Configuration
 @RequiredArgsConstructor
 public class BaseInitData {
@@ -21,21 +19,18 @@ public class BaseInitData {
     private BaseInitData self;
     private final PostService postService;
 
-
     @Bean
-    public ApplicationRunner initData(){
+    public ApplicationRunner initData() {
         return args -> {
-          self.work1();
+            self.work1();
         };
     }
 
     @Transactional
-    public void work1(){
-        if(postService.count()>0){
+    public void work1() {
+        if(postService.count() > 0) {
             return;
         }
-        //한번만 수행해 주면 돼서.
-
         Post post1 = postService.write("제목1", "내용1");
         Post post2 = postService.write("제목2", "내용2");
         postService.write("제목3", "내용3");
@@ -45,6 +40,5 @@ public class BaseInitData {
         post1.addComment("댓글 1-3");
         post2.addComment("댓글 2-1");
         post2.addComment("댓글 2-2");
-
     }
 }

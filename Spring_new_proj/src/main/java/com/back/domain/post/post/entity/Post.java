@@ -22,30 +22,31 @@ public class Post extends BaseEntity {
     private String title;
     private String content;
 
-    @OneToMany(mappedBy="post",
+    @OneToMany(mappedBy = "post",
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
 
-public Post(String title, String content) {
-    this.title = title;
-    this.content = content;
-}
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    //댓글 추가
-    public Comment addComment(String content){
-        Comment comment = new Comment(content,this);
+    // 댓글 추가
+
+    public Comment addComment(String content) {
+        Comment comment = new Comment(content, this);
         comments.add(comment);
 
         return comment;
-
     }
 
-    //댓글 수정
-    //댓글 삭제
+    // 댓글 수정
+    // 댓글 삭제
+    // 댓글 조회
 }
