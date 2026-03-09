@@ -13,19 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 
 @Controller
 @RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;
-
-    @GetMapping("/posts/write-form")
-    public String writeForm(@ModelAttribute("form") WriteRequestForm form) {
-        return "write";
-    }
 
     @AllArgsConstructor
     @Getter
@@ -39,6 +34,11 @@ public class PostController {
         private String content;
     }
 
+    @GetMapping("/posts/write")
+    public String writeForm(@ModelAttribute("form") WriteRequestForm form) {
+        return "write";
+    }
+
     @PostMapping("/posts/write")
     public String write(@Valid @ModelAttribute("form") WriteRequestForm form, BindingResult bindingResult,
                         Model model) {
@@ -49,9 +49,15 @@ public class PostController {
 
         Post post = postService.write(form.title, form.content);
 
+        return "redirect:/posts/%d".formatted(post.getId()); // GET요청
+    }
 
-        model.addAttribute("id", post.getId());
-        return "writeDone";
+    @GetMapping("/posts/{id}")
+    public String detail(@PathVariable int id, Model model) {
+        Post post = postService.findById(id).get();
+        model.addAttribute("post", post);
+
+        return "detail";
     }
 
 }
