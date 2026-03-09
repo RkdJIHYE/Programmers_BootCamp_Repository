@@ -23,7 +23,7 @@ public class PostService {
         Post post = postRepository.findById(id).get();
         post.update(title, content);
 
-        return postRepository.save(post);
+        return post;
     }
 
     public Optional<Post> findById(int id) {
