@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class PostController {
@@ -50,6 +52,13 @@ public class PostController {
         Post post = postService.write(form.title, form.content);
 
         return "redirect:/posts/%d".formatted(post.getId()); // GET요청
+    }
+
+    @GetMapping("/posts")
+    public String list(Model model) {
+        List<Post> posts = postService.findAll();
+        model.addAttribute("posts", posts);
+        return "post/list";
     }
 
     @GetMapping("/posts/{id}")
