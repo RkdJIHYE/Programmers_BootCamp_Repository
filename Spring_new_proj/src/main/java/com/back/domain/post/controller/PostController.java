@@ -65,7 +65,13 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}/modify")
-    public String modifyForm(@ModelAttribute("form") WriteRequestForm form) {
+    public String modifyForm(@PathVariable int id, @ModelAttribute("form") ModifyRequestForm form) {
+
+        Post post = postService.findById(id).get();
+
+        form.title = post.getTitle();
+        form.content = post.getContent();
+
         return "modify";
     }
 
