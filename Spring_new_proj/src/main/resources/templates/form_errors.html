@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-
 <th:block th:fragment="formErrorsFragment">
     <ul th:if="${#fields.hasAnyErrors()}" style="color:red">
         <li th:each="err : ${#fields.allErrors().stream().sorted()}"
