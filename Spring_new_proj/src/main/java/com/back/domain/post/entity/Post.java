@@ -8,11 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@AllArgsConstructor // 매개변수 생성자
-@NoArgsConstructor //기본 생성자
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post extends BaseEntity {
 
-    private String title ;
+    private String title;
     private String content;
 
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
