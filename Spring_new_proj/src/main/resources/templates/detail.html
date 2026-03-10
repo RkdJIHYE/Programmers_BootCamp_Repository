@@ -1,4 +1,7 @@
 <html lang="ko" layout:decorate="~{layout}">
+<head>
+    <title th:text="|글 상세|"></title>
+</head>
 <th:block layout:fragment="content">
     <h1>글 상세보기</h1>
 
@@ -46,8 +49,6 @@
             }
 
             form.submit();
-
-
         }
     </script>
     <hr>
@@ -65,4 +66,3 @@
             </div>
         </li>
     </ul>
-</th:block>
