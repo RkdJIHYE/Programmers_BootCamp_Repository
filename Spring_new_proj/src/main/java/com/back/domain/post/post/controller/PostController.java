@@ -5,17 +5,15 @@ import com.back.domain.post.post.service.PostService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+
+
 
 @Controller
 @RequiredArgsConstructor
@@ -27,8 +25,6 @@ public class PostController {
             @Size(min = 2, max = 10, message = "03-title-제목은 2자 이상 10자 이하로 입력해주세요.")
             @NotBlank(message = "01-title-제목은 필수입니다.")
             String title,
-
-
 
             @NotBlank(message = "02-content-내용은 필수입니다.")
             @Size(min = 2, max = 100, message = "04-content-내용은 2자 이상 100자 이하로 입력해주세요.")
@@ -56,8 +52,6 @@ public class PostController {
 
 
     record ModifyRequestForm (
-
-
             @Size(min = 2, max = 10, message = "03-title-제목은 2자 이상 10자 이하로 입력해주세요.")
             @NotBlank(message = "01-title-제목은 필수입니다.")
             String title,
@@ -70,16 +64,14 @@ public class PostController {
     @GetMapping("/posts/{id}/modify")
     @Transactional(readOnly = true)
     public String modifyForm(@PathVariable int id, Model model) {
-
         Post post = postService.findById(id).get();
         ModifyRequestForm modifyRequestForm = new ModifyRequestForm(post.getTitle(), post.getContent());
         model.addAttribute("form", modifyRequestForm);
 
-
         return "modify";
     }
 
-    @PostMapping("/posts/{id}/modify")
+    @PutMapping("/posts/{id}/modify")
     @Transactional
     public String modify(@PathVariable int id,
                          @Valid @ModelAttribute("form") ModifyRequestForm form,
@@ -93,6 +85,11 @@ public class PostController {
         return "redirect:/posts/%d".formatted(post.getId()); // GET요청
     }
 
+    @DeleteMapping("/posts/{id}/delete")
+    public String delete(@PathVariable int id) {
+        postService.deleteById(id);
+        return "redirect:/posts";
+    }
 
     @GetMapping("/posts")
     @Transactional(readOnly = true)
