@@ -12,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
-
-
 @Controller
 @RequiredArgsConstructor
 public class PostController {
@@ -67,11 +64,12 @@ public class PostController {
         Post post = postService.findById(id).get();
         ModifyRequestForm modifyRequestForm = new ModifyRequestForm(post.getTitle(), post.getContent());
         model.addAttribute("form", modifyRequestForm);
+        model.addAttribute("post", post);
 
         return "modify";
     }
 
-    @PutMapping("/posts/{id}/modify")
+    @PutMapping("/posts/{id}")
     @Transactional
     public String modify(@PathVariable int id,
                          @Valid @ModelAttribute("form") ModifyRequestForm form,
@@ -85,7 +83,7 @@ public class PostController {
         return "redirect:/posts/%d".formatted(post.getId()); // GET요청
     }
 
-    @DeleteMapping("/posts/{id}/delete")
+    @DeleteMapping("/posts/{id}")
     public String delete(@PathVariable int id) {
         postService.deleteById(id);
         return "redirect:/posts";
