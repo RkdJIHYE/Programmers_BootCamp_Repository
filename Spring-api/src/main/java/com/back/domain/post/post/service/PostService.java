@@ -1,4 +1,4 @@
-package com.back.back.domain.post.post.service;
+package com.back.domain.post.post.service;
 
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;

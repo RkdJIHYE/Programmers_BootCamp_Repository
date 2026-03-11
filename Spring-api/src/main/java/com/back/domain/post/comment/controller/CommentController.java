@@ -1,4 +1,4 @@
-package com.back.back.domain.post.comment.controller;
+package com.back.domain.post.comment.controller;
 
 import com.back.domain.post.comment.entity.Comment;
 import com.back.domain.post.post.entity.Post;

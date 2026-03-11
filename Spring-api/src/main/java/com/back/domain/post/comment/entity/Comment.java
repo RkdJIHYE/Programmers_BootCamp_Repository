@@ -1,4 +1,4 @@
-package com.back.back.domain.post.comment.entity;
+package com.back.domain.post.comment.entity;
 
 import com.back.domain.post.post.entity.Post;
 import com.back.global.entity.BaseEntity;
