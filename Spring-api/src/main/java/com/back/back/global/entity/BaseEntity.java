@@ -1,4 +1,4 @@
-package com.back.back.global.entity;
+package com.back.global.entity;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @CreatedDate
     private LocalDateTime createDate;
