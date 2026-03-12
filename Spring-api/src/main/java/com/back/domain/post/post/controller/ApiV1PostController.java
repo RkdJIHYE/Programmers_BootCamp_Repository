@@ -1,8 +1,8 @@
-package com.back.domain.post.domain.post.post.controller;
+package com.back.domain.post.post.controller;
 
-import com.back.domain.post.domain.post.post.dto.PostDto;
-import com.back.domain.post.domain.post.post.entity.Post;
-import com.back.domain.post.domain.post.post.service.PostService;
+import com.back.domain.post.post.dto.PostDto;
+import com.back.domain.post.post.entity.Post;
+import com.back.domain.post.post.service.PostService;
 import com.back.domain.post.global.rsData.RsData;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

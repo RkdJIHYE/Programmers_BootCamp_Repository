@@ -1,6 +1,6 @@
-package com.back.domain.post.domain.post.comment.dto;
+package com.back.domain.post.comment.dto;
 
-import com.back.domain.post.domain.post.comment.entity.Comment;
+import com.back.domain.post.comment.entity.Comment;
 
 import java.time.LocalDateTime;
 
