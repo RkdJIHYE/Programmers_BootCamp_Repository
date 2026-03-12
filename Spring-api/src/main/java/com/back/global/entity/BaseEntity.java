@@ -1,4 +1,4 @@
-package com.back.domain.post.global.entity;
+package com.back.global.entity;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;

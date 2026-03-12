@@ -2,7 +2,7 @@ package com.back.domain.post.post.entity;
 
 import com.back.domain.post.comment.entity.Comment;
 
-import com.back.domain.post.global.entity.BaseEntity;
+import com.back.global.entity.BaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

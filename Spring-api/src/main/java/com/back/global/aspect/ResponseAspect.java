@@ -1,6 +1,6 @@
-package com.back.domain.post.global.aspect;
+package com.back.global.aspect;
 
-import com.back.domain.post.global.rsData.RsData;
+import com.back.global.rsData.RsData;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;

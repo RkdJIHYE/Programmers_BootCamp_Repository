@@ -1,4 +1,4 @@
-package com.back.domain.post;
+package com.back;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
