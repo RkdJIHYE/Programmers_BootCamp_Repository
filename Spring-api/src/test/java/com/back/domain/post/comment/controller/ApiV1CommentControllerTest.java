@@ -134,7 +134,7 @@ public class ApiV1CommentControllerTest {
 
         resultActions
                 .andExpect(handler().handlerType(ApiV1CommentController.class))
-                .andExpect(handler().methodName("modifyItem"))
+                .andExpect(handler().methodName("modify"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.resultCode").value("200-1"))
                 .andExpect(jsonPath("$.msg").value("%d번 댓글이 수정되었습니다.".formatted(targetCommentId)));
@@ -170,4 +170,5 @@ public class ApiV1CommentControllerTest {
         Comment comment = post.findCommentById(targetCommentId).orElse(null);
         assertThat(comment).isNull();
     }
+
 }
