@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.jmx.ParentAwareNamingStrategy;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,13 +19,12 @@ import java.util.List;
 public class ApiV1PostController {
 
     private final PostService postService;
-    private final ParentAwareNamingStrategy parentAwareNamingStrategy;
 
     @GetMapping
     public List<PostDto> list() {
         List<Post> result = postService.findAll();
 
-        List<PostDto> postDtoList = result.stream()
+        List<PostDto> postDtoList = result.reversed().stream()
                 .map(PostDto::new)
                 .toList();
 

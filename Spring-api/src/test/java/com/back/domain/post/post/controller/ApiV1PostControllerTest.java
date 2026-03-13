@@ -1,6 +1,5 @@
-package com.back.post.controller;
+package com.back.domain.post.post.controller;
 
-import com.back.domain.post.post.controller.ApiV1PostController;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import com.back.domain.post.post.service.PostService;
@@ -15,7 +14,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsInRelativeOrder;
+import static org.hamcrest.Matchers.matchesPattern;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -43,8 +46,17 @@ public class ApiV1PostControllerTest {
                 )
                 .andDo(print());
 
+
         resultActions
-                .andExpect(status().isOk()); //200
+                .andExpect(jsonPath("$.length()").value(3))
+                .andExpect(jsonPath("$[*].id", containsInRelativeOrder(3, 1)))
+                .andExpect(jsonPath("$[0].id").value(3))
+                .andExpect(jsonPath("$[0].createDate").exists())
+                .andExpect(jsonPath("$[0].modifyDate").exists())
+                .andExpect(jsonPath("$[0].title").value("제목3"))
+                .andExpect(jsonPath("$[0].content").value("내용3"));
+
+
     }
 
     @Test
@@ -63,10 +75,15 @@ public class ApiV1PostControllerTest {
                 .andExpect(handler().methodName("detail"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.createDate").exists())
-                .andExpect(jsonPath("$.modifyDate").exists())
                 .andExpect(jsonPath("$.title").value("제목1"))
                 .andExpect(jsonPath("$.content").value("내용1"));
+
+
+        Post post = postRepository.findById(targetId).get();
+
+        resultActions
+                .andExpect(jsonPath("$.createDate").value(matchesPattern(post.getCreateDate().toString().replaceAll("0+$", "") + ".*")))
+                .andExpect(jsonPath("$.modifyDate").value(matchesPattern(post.getModifyDate().toString().replaceAll("0+$", "") + ".*")));
 
 //        Post post = postRepository.findById(targetId).get();
 //        resultActions
