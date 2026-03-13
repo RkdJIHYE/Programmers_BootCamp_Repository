@@ -23,6 +23,8 @@ public class GlobalExceptionHandler {
         );
     }
 
+
+    //제목에 대한 예외발생 케이스 오류 메시지
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public RsData<Void> handleException(MethodArgumentNotValidException e) {
