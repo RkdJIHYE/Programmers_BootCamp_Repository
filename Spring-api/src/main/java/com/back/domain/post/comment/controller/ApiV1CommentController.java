@@ -10,13 +10,11 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/posts/{postId}/comments")
@@ -26,14 +24,13 @@ public class ApiV1CommentController {
     private final PostRepository postRepository;
 
     @GetMapping
-    @ResponseBody
     public List<CommentDto> list(
             @PathVariable int postId
     ) {
         Post post = postService.findById(postId).get();
         List<Comment> comments = post.getComments();
 
-        List<CommentDto> commentDtoList = comments.stream()
+        List<CommentDto> commentDtoList = comments.reversed().stream()
                 .map(CommentDto::new)
                 .toList();
 
@@ -41,7 +38,6 @@ public class ApiV1CommentController {
     }
 
     @GetMapping("/{commentId}")
-    @ResponseBody
     public CommentDto detail(@PathVariable int postId, @PathVariable int commentId) {
         Post post = postService.findById(postId).get();
         Comment comment = post.findCommentById(commentId).get();
@@ -75,7 +71,7 @@ public class ApiV1CommentController {
         postService.flush();
 
         return new RsData<>(
-                "%d번 댓글이 성공적으로 작성되었습니다.".formatted(comment.getId()),
+                "%d번 댓글이 생성되었습니다.".formatted(comment.getId()),
                 "201-1",
                 new CommentWriteResBody(
                         new CommentDto(comment)
@@ -84,7 +80,6 @@ public class ApiV1CommentController {
     }
 
     @DeleteMapping("/{commentId}")
-    @ResponseBody
     @Transactional
     public RsData<CommentDto> delete(
             @PathVariable int postId,
@@ -96,7 +91,7 @@ public class ApiV1CommentController {
 
         return new RsData<>(
                 "%d번 댓글이 삭제되었습니다.".formatted(commentId),
-                "204-1",
+                "200-1",
                 new CommentDto(comment)
         );
     }
